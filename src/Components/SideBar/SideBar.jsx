@@ -16,6 +16,9 @@ function SideBar({ State, setState }) {
                         <li> <a href="#" className={`nav-link text-white ${State === "Products" ? "active" : ""} `} onClick={() => setState("Products")}> <svg className="bi pe-none me-2" width="16" height="16" aria-hidden="true"><use xlinkHref="#grid"></use></svg>
                             Products
                         </a> </li>
+                        <li> <a href="#" className={`nav-link text-white ${State === "Contact" ? "active" : ""} `} onClick={() => setState("Contact")}> <svg className="bi pe-none me-2" width="16" height="16" aria-hidden="true"><use xlinkHref="#grid"></use></svg>
+                            Contact
+                        </a> </li>
                         {none ?
                             <>
                                 <li> <a href="#" className={`nav-link text-white ${State === "Features" ? "active" : ""} `} onClick={() => setState("Features")}> <svg className="bi pe-none me-2" width="16" height="16" aria-hidden="true"><use xlinkHref="#grid"></use></svg>
