@@ -1,6 +1,4 @@
 import { useContext, useState } from 'react'
-
-
 import Header from './Components/Header/Header'
 import SideBar from './Components/SideBar/SideBar'
 import Form from './Components/Form/Form'

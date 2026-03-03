@@ -8,16 +8,16 @@ function LoginScreen() {
     return (
         <div className="login-wrapper">
 
-            {/* Navbar */}
+            
             <nav className="navbar custom-navbar px-3 px-md-5 py-3">
                 <span className="brand-text">Post Generator</span>
             </nav>
 
-            {/* Main Section */}
+            
             <div className="container flex-grow-1 d-flex align-items-center">
                 <div className="row w-100 align-items-center gy-5 custom">
 
-                    {/* Left Content */}
+                   
                     <div className="col-12 col-lg-6 text-center text-lg-start text-white">
                         <h1 className="main-heading">
                             Create Powerful
@@ -46,7 +46,7 @@ function LoginScreen() {
                         </p>
                     </div>
 
-                    {/* Right Image */}
+                   
                     <div className="col-12 col-lg-6 text-center">
                         <div className="image-card mx-auto">
                             <img
@@ -60,7 +60,7 @@ function LoginScreen() {
                 </div>
             </div>
 
-            {/* Footer */}
+           
             <footer className="footer-text text-center py-3">
                 © 2026 Post Generator
             </footer>

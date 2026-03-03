@@ -178,38 +178,38 @@
   z-index: 1000;
 }
 
-/* Full screen overlay */
+
 .spinner-overlay {
   position: fixed;
-  /* screen ke upar hamesha */
+ 
   top: 0;
   left: 0;
   width: 100vw;
-  /* full width */
+ 
   height: 100vh;
-  /* full height */
+
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.7);
-  /* optional semi-transparent bg */
+ 
   z-index: 9999;
-  /* screen ke upar */
+ 
 }
 
-/* Spinner itself */
+
 .spinner {
   width: 70px;
   height: 70px;
   border: 8px solid #ddd;
-  /* light gray background */
+  
   border-top: 8px solid #0d6efd;
-  /* blue top */
+  
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-/* Spin animation */
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -237,7 +237,7 @@
   overflow-x: hidden;
 }
 
-/* Navbar */
+
 .brand-text {
   font-size: 1.3rem;
   font-weight: 700;
@@ -245,7 +245,7 @@
   letter-spacing: 1px;
 }
 
-/* Headings */
+
 .main-heading {
   font-weight: 700;
   line-height: 1.2;
@@ -273,7 +273,7 @@
   }
 }
 
-/* Google Button */
+
 .google-login-btn {
   display: inline-flex;
   align-items: center;
@@ -295,20 +295,20 @@
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* Full width button on small screens */
+
 @media (max-width: 576px) {
   .google-login-btn {
     width: 100%;
   }
 }
 
-/* Security text */
+
 .security-text {
   font-size: 0.85rem;
   opacity: 0.7;
 }
 
-/* Image Card */
+
 .image-card {
   background: rgba(255, 255, 255, 0.08);
   padding: 25px;
@@ -322,13 +322,12 @@
   max-width: 100%;
 }
 
-/* Footer */
+
 .footer-text {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.8rem;
 }
 
-/* Extra small devices */
 @media (max-width: 400px) {
   .main-heading {
     font-size: 1.6rem;
@@ -342,7 +341,7 @@
     overflow-x: hidden;
   }
 
-  /* Navbar */
+  
   .brand-text {
     font-size: 1.3rem;
     font-weight: 700;
@@ -350,7 +349,6 @@
     letter-spacing: 1px;
   }
 
-  /* Headings */
   .main-heading {
     font-weight: 700;
     line-height: 1.2;
@@ -373,7 +371,7 @@
 
 
 
-  /* Google Button */
+  
   .google-login-btn {
     display: inline-flex;
     align-items: center;
@@ -395,16 +393,15 @@
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
   }
 
-  /* Full width button on small screens */
 
 
-  /* Security text */
+
+  
   .security-text {
     font-size: 0.85rem;
     opacity: 0.7;
   }
 
-  /* Image Card */
   .image-card {
     background: rgba(255, 255, 255, 0.08);
     padding: 25px;
@@ -418,14 +415,13 @@
     max-width: 100%;
   }
 
-  /* Footer */
+
   .footer-text {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.8rem;
   }
 
 
-  /* Extra small devices */
   @media (max-width: 400px) {
     .main-heading {
       font-size: 1.6rem;
