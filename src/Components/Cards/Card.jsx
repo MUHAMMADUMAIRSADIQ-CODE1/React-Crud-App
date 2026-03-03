@@ -58,7 +58,7 @@ function Card() {
                                     </button>
                                     <button className="btn btn-delete btn-sm" onClick={() =>{
                                          DeleteItem(item.id)
-                                         console.log("jis per click kiya",item.id)
+                                        
                                          }}>
                                         🗑 Delete
                                     </button>

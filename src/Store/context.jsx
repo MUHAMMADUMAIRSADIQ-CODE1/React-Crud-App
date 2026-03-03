@@ -19,7 +19,7 @@ export function ContextApp({ children }) {
     async function loginWithGoogle() {
         try {
             let result = await signInWithPopup(auth, provider)
-            console.log("login ho gaya", result.user)
+           
             setUser(result.user)
         } catch (error) {
             console.error(error);
@@ -90,23 +90,16 @@ export function ContextApp({ children }) {
 
             initData();
     }, [user, apiData]);
-    console.log(State.length)
-    console.log(State)
+    
     async function checkIncludes(obj) {
-        console.log("andar agyaa ", State)
+        
         if (State.length === 0) {
 
         }
         else {
             const isDuplicate = State.some((item) => {
 
-                console.log("Title:", item.title === obj.title);
-                console.log("Description:", item.description === obj.description);
-                console.log("Image:", item.images[0] === obj.images[0]);
-                console.log("rating:", item.rating === obj.rating);
-                console.log("Tags:",
-                    JSON.stringify(item.tags) === JSON.stringify(obj.tags)
-                );
+                
 
                 return (
                     item.title === obj.title ||
@@ -117,8 +110,7 @@ export function ContextApp({ children }) {
                 );
             });
 
-            console.log("Final some() result:", isDuplicate);
-            console.log(isDuplicate)
+           
             if (!isDuplicate && user) {
                 setState(pre => [obj, ...pre])
                 setDoc(doc(db, "Users", user.uid, "posts", obj.id.toString()), obj)

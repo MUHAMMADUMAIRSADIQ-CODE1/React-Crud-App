@@ -14,7 +14,7 @@ function Form() {
         let img = imbRef.current.value;
         let rect = reactionsRef.current.value
         let hash = HashRef.current.value
-        console.log("jahan per feed kiya", hash)
+        
         let obj = {
             id: (Date.now()).toString(),
             title: title,
@@ -37,7 +37,7 @@ function Form() {
             CollectFormData({ ...disabled, tags: disabled.tags.split(" ") })
             setDisabled(undefined)
         }} >
-            {console.log(disabled)}
+            
             <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Post Generator</h1>
             <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Title</label>
@@ -67,7 +67,7 @@ function Form() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={() => takeInput()} />
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
-            {console.log("hash dekh raha hoon", disabled ? disabled.tags : "")}
+            
             <button type="submit" className="btn btn-primary" disabled={
                 !disabled ||
                 !disabled.title ||
