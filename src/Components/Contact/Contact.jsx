@@ -9,24 +9,24 @@ function Contact() {
         e.preventDefault();
 
         emailjs.sendForm(
-            "service_2w0tr8l",
-            "template_ha4xz8b",
+            import.meta.env.VITE_SERVICE_ID,
+            import.meta.env.VITE_TEMPLATE_ID,
             form.current,
-            "ZWW3Rxr_ypcUVyiQs"
+            import.meta.env.VITE_PUBLIC_KEY
         )
             .then(() => {
                 toast.success("Message Sent Successfully");
                 e.target.reset();
             })
             .catch((error) => {
-                console.error("Email KI tarf",error)
+                console.error("Email KI tarf", error)
                 toast.error("Something went wrong");
             });
     };
 
     return (
         <div className="container py-5">
-            <ToastContainer position="top-center"/>
+            <ToastContainer position="top-center" />
             <div className="row justify-content-center">
                 <div className="col-lg-8 col-md-10">
                     <div className="card shadow-lg border-0 rounded-4">
