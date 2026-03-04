@@ -18,7 +18,7 @@ function App() {
   return (
     <>
 
-    {user ? <>
+      {user ? <>
         <Header setState={setState} />
         <SideBar State={State} setState={setState} />
         <div className={`cards ${(toggle && none) ? "Margin" : toggle ? "" : "Margin"}`}>
