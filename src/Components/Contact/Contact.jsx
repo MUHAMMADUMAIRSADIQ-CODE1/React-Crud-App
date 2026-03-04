@@ -1,13 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast, ToastContainer } from "react-toastify";
 
 function Contact() {
     const form = useRef();
-
+    let [smallLoader, setSmallLoader] = useState(false)
     const sendEmail = (e) => {
         e.preventDefault();
-
+        setSmallLoader(true)
         emailjs.sendForm(
             import.meta.env.VITE_SERVICE_ID,
             import.meta.env.VITE_TEMPLATE_ID,
@@ -16,11 +16,13 @@ function Contact() {
         )
             .then(() => {
                 toast.success("Message Sent Successfully");
+                setSmallLoader(false)
                 e.target.reset();
             })
             .catch((error) => {
                 console.error("Email KI tarf", error)
                 toast.error("Something went wrong");
+                setSmallLoader(false)
             });
     };
 
@@ -100,7 +102,7 @@ function Contact() {
                                         type="submit"
                                         className="btn btn-dark btn-lg rounded-3"
                                     >
-                                        Send Message
+                                        Send Message      {smallLoader ? <span className="spinner-border spinner-border-sm ms-3" role="status" aria-hidden="true" ></span> : ""}
                                     </button>
                                 </div>
 
