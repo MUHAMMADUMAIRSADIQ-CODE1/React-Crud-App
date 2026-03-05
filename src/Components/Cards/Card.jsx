@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { context } from "../../Store/context";
 import Form from "../Form/Form";
+import Loader from "../Loader/Loader";
 
 function Card() {
-    let { State, DeleteItem, EditItem ,display,setDisplay} = useContext(context);
+    let { State, DeleteItem, EditItem, display, setDisplay, initData, exist } = useContext(context);
     let [search, setSearch] = useState("")
+    let [popup, setPopup] = useState(false)
     // const [showAll, setShowAll] = useState(false)
     const [visibleCount, setVisibleCount] = useState(2);
     let filtered = State.filter((item) =>
@@ -14,7 +16,7 @@ function Card() {
     // if (!showAll && !search) {
     //     filtered = filtered.slice(0, 4)
     // }
-    
+
 
 
     return (
@@ -31,7 +33,45 @@ function Card() {
 
                     }} />
             </div>
-            {State.length === 0 ? <p style={{ color: "#6C757D", textAlign: "center", marginTop: "70px" }}>There Are No Posts Yet</p> : ""}
+
+            {State.length === 0 ? (
+
+                <div style={{ textAlign: "center", marginTop: "70px" }}>
+                    <p style={{ color: "#6C757D" }}>There Are No Posts Yet</p>
+
+                    <button
+                        className="btn btn-dark mt-3"
+                        onClick={() => setPopup(true)}
+                    >
+                        Fetch Posts
+                    </button>
+                </div>
+
+            ) : ""}
+            {popup ? <div class="popup-overlay">
+
+                <div class="popup-box">
+
+                    <h2>Fetch Posts</h2>
+
+                    <p>
+                        Are you sure you want to fetch posts again?
+                        This will reload posts from the API.
+                    </p>
+
+                    <div class="popup-buttons">
+                        <button className="cancel-btn" onClick={() => setPopup(false)}>Cancel</button>
+                        <button className="fetch-btn" onClick={() => {
+                            initData()
+                            setPopup(false)
+                        }}>Fetch Posts</button>
+                    </div>
+
+                </div>
+
+            </div> : ""}
+
+            {popup ? "" : exist.size === 0 ? <Loader /> : ""}
 
             {/* Cards Wrapper */}
             <div className="cards-wrapper d-flex flex-wrap gap-4 justify-content-center">
@@ -64,7 +104,7 @@ function Card() {
                                         <button
                                             className="btn btn-outline-primary btn-sm"
                                             onClick={() => {
-                                                EditItem(item.id,item)
+                                                EditItem(item.id, item)
                                                 setDisplay(true)
 
 

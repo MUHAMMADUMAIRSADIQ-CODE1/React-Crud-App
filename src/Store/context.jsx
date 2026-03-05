@@ -1,5 +1,5 @@
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore/lite";
-import { createContext,useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { auth, provider, signInWithPopup } from "../firebase.js";
 import { toast, ToastContainer } from "react-toastify";
 export const context = createContext()
@@ -10,6 +10,7 @@ export function ContextApp({ children }) {
     let initialState = []
     const [loading, setLoading] = useState(true);
     let [info, setInfo] = useState(null)
+    let [exist, setexist] = useState([])
     let [saveId, setSaveId] = useState()
     let [display, setDisplay] = useState(false)
     let [user, setUser] = useState()
@@ -57,15 +58,15 @@ export function ContextApp({ children }) {
             .then(res => res.json()).then(data => setApiData(data.products))
 
     }, [])
- useEffect(() => {
+
     async function initData() {
         if (!user) return;
 
         let snapshot = await getDocs(
             collection(db, "Users", user.uid, "posts")
         );
+        setexist(snapshot);
 
-   
         if (snapshot.size === 0 && apiData.length > 0) {
 
             for (const item of apiData) {
@@ -87,12 +88,14 @@ export function ContextApp({ children }) {
 
         setState(posts);
 
-        if (posts.length !== 0)
-            toast.success(`${user.displayName} Posts Loaded Successfully`);
+        if (posts.length !== 0) toast.success(`${user.displayName} Posts Loaded Successfully`);
+        setexist(snapshot);
     }
+    useEffect(() => {
+        initData()
+    }, [user, apiData]);
 
-    initData();
-}, [user, apiData]);
+
 
     async function checkIncludes(obj) {
 
@@ -155,7 +158,7 @@ export function ContextApp({ children }) {
             <ToastContainer position="top-center" />
             < context.Provider value={{
                 CollectFormData, State, none, setNone, toggle, setToggle, DeleteItem, user, loginWithGoogle, logout, loading,
-                allState, EditItem, display, setDisplay, info, Update
+                allState, EditItem, display, setDisplay, info, Update, initData, exist
             }}>
                 {children}
             </context.Provider >

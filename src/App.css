@@ -512,3 +512,192 @@
 .modal-box .Form {
   width: 100%;
 }
+.popup-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background: rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.popup-box{
+  background:white;
+  padding:30px;
+  width:350px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  text-align:center;
+  animation: popup 0.3s ease;
+}
+
+.popup-box h2{
+  margin-bottom:10px;
+}
+
+.popup-box p{
+  color:#666;
+  font-size:14px;
+}
+
+.popup-buttons{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.cancel-btn{
+  padding:8px 18px;
+  border:none;
+  background:#ddd;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.fetch-btn{
+  padding:8px 18px;
+  border:none;
+  background:#28a745;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.cancel-btn:hover{
+  background:#ccc;
+}
+
+.fetch-btn:hover{
+  background:#218838;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(0.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+/* profile image */
+.profile-img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+/* overlay */
+.profile-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+/* card */
+.profile-card{
+  background:white;
+  width:100%;
+  max-width:350px;
+  padding:30px 25px;
+  border-radius:20px;
+  text-align:center;
+  position:relative;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* avatar */
+.profile-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  margin-bottom:10px;
+}
+
+/* name */
+.profile-name{
+  margin:8px 0;
+  font-size:22px;
+}
+
+/* role */
+.profile-role{
+  color:gray;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* bio */
+.profile-bio{
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* close button */
+.close-btn{
+  position:absolute;
+  top:12px;
+  right:15px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+/* ------------------ */
+/* Mobile Responsive  */
+/* ------------------ */
+
+@media (max-width:768px){
+
+  .profile-card{
+    max-width:300px;
+    padding:25px 20px;
+  }
+
+  .profile-avatar{
+    width:70px;
+    height:70px;
+  }
+
+  .profile-name{
+    font-size:20px;
+  }
+
+}
+
+@media (max-width:480px){
+
+  .profile-card{
+    max-width:260px;
+    padding:20px 18px;
+  }
+
+  .profile-avatar{
+    width:60px;
+    height:60px;
+  }
+
+  .profile-name{
+    font-size:18px;
+  }
+
+  .profile-role,
+  .profile-bio{
+    font-size:13px;
+  }
+
+}
