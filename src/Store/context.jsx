@@ -142,6 +142,7 @@ export function ContextApp({ children }) {
         await updateDoc(doc(db, "Users", user.uid, "posts", saveId.toString()), { ...updateObj })
         let filterDelete = State.map((item) => item.id === saveId ? { ...item, ...updateObj } : item)
         setState(filterDelete)
+        toast.success(`${user.displayName} Post Updated Successfully`)
     }
     function CollectFormData(obj) {
         checkIncludes(obj)
