@@ -1,5 +1,5 @@
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore/lite";
-import { createContext, use, useEffect, useReducer, useState } from "react";
+import { createContext,useEffect, useReducer, useState } from "react";
 import { auth, provider, signInWithPopup } from "../firebase.js";
 import { toast, ToastContainer } from "react-toastify";
 export const context = createContext()
@@ -57,41 +57,42 @@ export function ContextApp({ children }) {
             .then(res => res.json()).then(data => setApiData(data.products))
 
     }, [])
-    // if()
-    useEffect(() => {
-        async function initData() {
-            if (!user || apiData.length === 0) return;
+ useEffect(() => {
+    async function initData() {
+        if (!user) return;
 
-            let snapshot = await getDocs(
-                collection(db, "Users", user.uid, "posts")
-            );
+        let snapshot = await getDocs(
+            collection(db, "Users", user.uid, "posts")
+        );
 
-            if (snapshot.size === 0) {
-                for (const item of apiData) {
-                    await setDoc(
-                        doc(db, "Users", user.uid, "posts", item.id.toString()),
-                        item
-                    );
-                }
+   
+        if (snapshot.size === 0 && apiData.length > 0) {
 
-
-                snapshot = await getDocs(
-                    collection(db, "Users", user.uid, "posts")
+            for (const item of apiData) {
+                await setDoc(
+                    doc(db, "Users", user.uid, "posts", item.id.toString()),
+                    item
                 );
             }
 
-            let posts = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-
-            setState(posts);
-            if (posts.length !== 0) toast.success(`${user.displayName} Posts Loaded Successfully`)
+            snapshot = await getDocs(
+                collection(db, "Users", user.uid, "posts")
+            );
         }
 
+        let posts = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+        }));
 
-        initData();
-    }, [user, apiData]);
+        setState(posts);
+
+        if (posts.length !== 0)
+            toast.success(`${user.displayName} Posts Loaded Successfully`);
+    }
+
+    initData();
+}, [user, apiData]);
 
     async function checkIncludes(obj) {
 
