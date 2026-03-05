@@ -1,82 +1,134 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { context } from "../../Store/context";
 function Form() {
-    const { CollectFormData } = useContext(context)
+    const { CollectFormData, setDisplay, display, info, Update } = useContext(context)
     let [disabled, setDisabled] = useState(undefined)
     let titleRef = useRef("")
     let dispRef = useRef("")
     let imbRef = useRef("")
     let reactionsRef = useRef("")
     let HashRef = useRef("")
+    useEffect(() => {
+        if (display && info) {
+            titleRef.current.value = info.title
+            dispRef.current.value = info.description
+            imbRef.current.value = info.images.join(" ")
+            reactionsRef.current.value = info.rating
+            HashRef.current.value = info.tags.join(" ")
+
+            setDisabled(info)
+        }
+    }, [display, info])
     function takeInput() {
         let title = titleRef.current.value;
         let disp = dispRef.current.value;
         let img = imbRef.current.value;
         let rect = reactionsRef.current.value
         let hash = HashRef.current.value
-        
+        console.log("takeInput running")
         let obj = {
-            id: (Date.now()).toString(),
+            id: display ? info.id : (Date.now()).toString(),
             title: title,
             description: disp,
             images: img.split(" "),
             rating: rect,
-            tags: hash
+            tags: display ? hash.split(" ") : hash
         }
         setDisabled(obj)
     }
-    return (
-        <form className="Form form-input" onSubmit={(event) => {
-            event.preventDefault()
+    console.log(disabled)
+    function Wrapper() {
+        return (
+            <form className="Form form-input" onSubmit={(event) => {
+                event.preventDefault()
 
-            titleRef.current.value = ""
-            dispRef.current.value = ""
-            imbRef.current.value = ""
-            reactionsRef.current.value = ""
-            HashRef.current.value = ""
-            CollectFormData({ ...disabled, tags: disabled.tags.split(" ") })
-            setDisabled(undefined)
-        }} >
-            
-            <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Post Generator</h1>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Title</label>
-                <input ref={titleRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post Title" onChange={() => takeInput()} />
-                <div id="emailHelp" className="form-text">Enter Your Post Here </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">Enter Description Here</label>
-                <textarea ref={dispRef} className="form-control" placeholder="Some quick example text to build on the card title and make up the..." onChange={() => takeInput()} />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Enter Image Link Here</label>
-                <input ref={imbRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="https://tse1.mm.bing.net/th/id/OIP..." onChange={() => takeInput()} />
-                <div id="emailHelp" className="form-text">Enter Your Post Here </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Reactions</label>
-                <input ref={reactionsRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#128512;&#128512;&#128512;" onChange={() => takeInput()} />
-                <div id="emailHelp" className="form-text">Enter Your Post Here </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Tags</label>
-                <input ref={HashRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="#Post #Cards" onChange={() => takeInput()} />
-                <div id="emailHelp" className="form-text">Enter Your Post Here </div>
-            </div>
-            <div className="mb-3 form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={() => takeInput()} />
-                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-            </div>
-            
-            <button type="submit" className="btn btn-primary" disabled={
-                !disabled ||
-                !disabled.title ||
-                !disabled.description ||
-                !disabled.images ||
-                !disabled.rating ||
-                !disabled.tags
-            }>Submit</button>
-        </form>
+                setDisplay(false)
+                titleRef.current.value = ""
+                dispRef.current.value = ""
+                imbRef.current.value = ""
+                reactionsRef.current.value = ""
+                HashRef.current.value = ""
+
+                if (!display) {
+                    CollectFormData({
+                        ...disabled,
+                        tags: Array.isArray(disabled.tags)
+                            ? disabled.tags
+                            : disabled.tags.split(" ")
+                    })
+                }
+                else {
+                    Update(disabled)
+                }
+                setDisabled(undefined)
+            }} >
+
+                <h1 style={{ textAlign: "center", marginBottom: "20px" }}>{display ? "Edit Section" : "Post Generator"}</h1>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Title</label>
+                    <input ref={titleRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post Title" onChange={() => takeInput()} />
+                    <div id="emailHelp" className="form-text">Enter Your Post Here </div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Enter Description Here</label>
+                    <textarea ref={dispRef} className="form-control" placeholder="Some quick example text to build on the card title and make up the..." onChange={() => takeInput()} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Enter Image Link Here</label>
+                    <input ref={imbRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="https://tse1.mm.bing.net/th/id/OIP..." onChange={() => takeInput()} />
+                    <div id="emailHelp" className="form-text">Enter Your Post Here </div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Reactions</label>
+                    <input ref={reactionsRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#128512;&#128512;&#128512;" onChange={() => takeInput()} />
+                    <div id="emailHelp" className="form-text">Enter Your Post Here </div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Enter Post Tags</label>
+                    <input ref={HashRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="#Post #Cards" onChange={() => takeInput()} />
+                    <div id="emailHelp" className="form-text">Enter Your Post Here </div>
+                </div>
+                <div className="mb-3 form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={() => takeInput()} />
+                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                </div>
+
+                <button type="submit" className="btn btn-primary" disabled={
+                    !disabled ||
+                    !disabled.title ||
+                    !disabled.description ||
+                    !disabled.images ||
+                    !disabled.rating ||
+                    !disabled.tags
+                }> {display ? "Update" : "Submit"}</button>
+            </form>
+
+        )
+    }
+    return (
+        <>
+            {display ? (
+                // 🔥 Modal Mode
+                <div className="overlay">
+                    <div className="modal-box">
+
+                        <button
+                            className="close-btn"
+                            onClick={() => setDisplay(false)}
+                        >
+                            ✖
+                        </button>
+
+                        {Wrapper()}
+                    </div>
+                </div>
+            ) : (
+                // 🟢 Normal Page Mode
+
+                <>{Wrapper()}</>
+
+            )}
+        </>
     )
 }
 export default Form;

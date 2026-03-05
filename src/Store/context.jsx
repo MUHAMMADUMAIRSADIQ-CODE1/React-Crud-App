@@ -1,5 +1,5 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore/lite";
-import { createContext, useEffect, useReducer, useState } from "react";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore/lite";
+import { createContext, use, useEffect, useReducer, useState } from "react";
 import { auth, provider, signInWithPopup } from "../firebase.js";
 import { toast, ToastContainer } from "react-toastify";
 export const context = createContext()
@@ -9,7 +9,9 @@ import { onAuthStateChanged } from "firebase/auth";
 export function ContextApp({ children }) {
     let initialState = []
     const [loading, setLoading] = useState(true);
-
+    let [info, setInfo] = useState(null)
+    let [saveId, setSaveId] = useState()
+    let [display, setDisplay] = useState(false)
     let [user, setUser] = useState()
     let [apiData, setApiData] = useState([])
     let [State, setState] = useState([])
@@ -19,7 +21,7 @@ export function ContextApp({ children }) {
     async function loginWithGoogle() {
         try {
             let result = await signInWithPopup(auth, provider)
-           
+
             setUser(result.user)
         } catch (error) {
             console.error(error);
@@ -51,7 +53,7 @@ export function ContextApp({ children }) {
 
 
     useEffect(() => {
-        fetch("https://dummyjson.com/products?limit=50")
+        fetch("https://dummyjson.com/products?limit=5")
             .then(res => res.json()).then(data => setApiData(data.products))
 
     }, [])
@@ -84,22 +86,22 @@ export function ContextApp({ children }) {
             }));
 
             setState(posts);
-            if (posts.length !== 0)toast.success(`${user.displayName} Posts Loaded Successfully`)
+            if (posts.length !== 0) toast.success(`${user.displayName} Posts Loaded Successfully`)
         }
-        
 
-            initData();
+
+        initData();
     }, [user, apiData]);
-    
+
     async function checkIncludes(obj) {
-        
+
         if (State.length === 0) {
 
         }
         else {
             const isDuplicate = State.some((item) => {
 
-                
+
 
                 return (
                     item.title === obj.title ||
@@ -110,10 +112,11 @@ export function ContextApp({ children }) {
                 );
             });
 
-           
+
             if (!isDuplicate && user) {
                 setState(pre => [obj, ...pre])
                 setDoc(doc(db, "Users", user.uid, "posts", obj.id.toString()), obj)
+                console.log("andar afgya duplicate")
                 toast.success(`${user.displayName} Post Added Successfully`)
 
             } else {
@@ -128,6 +131,18 @@ export function ContextApp({ children }) {
         setState(filterDelete)
         toast.success(`${user.displayName} Post Deleted Successfully`)
     }
+    async function EditItem(idInfo, ItemInfo) {
+        console.log("Edit NO", idInfo)
+        setInfo(ItemInfo)
+        setSaveId(idInfo)
+
+    }
+    async function Update(updateObj) {
+
+        await updateDoc(doc(db, "Users", user.uid, "posts", saveId.toString()), { ...updateObj })
+        let filterDelete = State.map((item) => item.id === saveId ? { ...item, ...updateObj } : item)
+        setState(filterDelete)
+    }
     function CollectFormData(obj) {
         checkIncludes(obj)
 
@@ -138,7 +153,7 @@ export function ContextApp({ children }) {
             <ToastContainer position="top-center" />
             < context.Provider value={{
                 CollectFormData, State, none, setNone, toggle, setToggle, DeleteItem, user, loginWithGoogle, logout, loading,
-                allState
+                allState, EditItem, display, setDisplay, info, Update
             }}>
                 {children}
             </context.Provider >

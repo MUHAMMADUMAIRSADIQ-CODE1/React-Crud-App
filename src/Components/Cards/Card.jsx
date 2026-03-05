@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { context } from "../../Store/context";
+import Form from "../Form/Form";
 
 function Card() {
-    let { State, DeleteItem } = useContext(context);
+    let { State, DeleteItem, EditItem ,display,setDisplay} = useContext(context);
     let [search, setSearch] = useState("")
     // const [showAll, setShowAll] = useState(false)
-    const [visibleCount, setVisibleCount] = useState(10);
+    const [visibleCount, setVisibleCount] = useState(2);
     let filtered = State.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     )
@@ -13,10 +14,11 @@ function Card() {
     // if (!showAll && !search) {
     //     filtered = filtered.slice(0, 4)
     // }
+    
 
 
     return (
-        <div className="cards-page container py-4">
+        display ? <Form /> : <div className="cards-page container py-4">
             {/* Cards Header */}
             <div className="cards-header d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <h2 className="cards-title">All Posts</h2>
@@ -44,6 +46,7 @@ function Card() {
                             className="card-img-top"
                             alt={item.title}
                         />
+
                         <div className="card-body d-flex flex-column justify-content-between">
 
                             <div>
@@ -56,12 +59,27 @@ function Card() {
                                     <button className="btn btn-outline-danger btn-sm rounded-pill px-3">
                                         ❤️ {item.rating}
                                     </button>
-                                    <button className="btn btn-delete btn-sm" onClick={() =>{
-                                         DeleteItem(item.id)
-                                        
-                                         }}>
-                                        🗑 Delete
-                                    </button>
+
+                                    <div className="d-flex gap-2">
+                                        <button
+                                            className="btn btn-outline-primary btn-sm"
+                                            onClick={() => {
+                                                EditItem(item.id,item)
+                                                setDisplay(true)
+
+
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <button
+                                            className="btn btn-delete btn-sm"
+                                            onClick={() => DeleteItem(item.id)}
+                                        >
+                                            🗑 Delete
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div className="d-flex flex-wrap gap-2">
@@ -79,13 +97,13 @@ function Card() {
             </div>
             {(visibleCount < filtered.length) ? (
                 <div className="sticky-btn">
-                    <button className="btn btn-dark px-4 py-2 rounded-pill shadow" onClick={() => setVisibleCount(prev => prev + 10)}>
+                    <button className="btn btn-dark px-4 py-2 rounded-pill shadow" onClick={() => setVisibleCount(prev => prev + 2)}>
                         {/* {showAll ? "Read Less ⬆" : "Read More ⬇"} */}
                         Load More ⬇
                     </button>
                 </div>
             ) : !search ? <div className="sticky-btn"> <button className="btn btn-dark px-4 py-2 rounded-pill shadow" onClick={() => {
-                setVisibleCount(10)
+                setVisibleCount(2)
                 window.scrollTo({ top: 0, behavior: "smooth" });
             }}>
                 {/* {showAll ? "Read Less ⬆" : "Read More ⬇"} */}
