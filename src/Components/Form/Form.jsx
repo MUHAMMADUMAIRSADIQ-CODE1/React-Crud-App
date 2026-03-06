@@ -33,7 +33,7 @@ function Form() {
     {
         title: "Learning Programming",
         description: "Programming is one of the most valuable skills in the modern world. Learning coding improves logical thinking and problem solving abilities. With dedication and practice anyone can become a skilled developer.",
-        images: ["https://images.unsplash.com/photo-1581091215364-6e3a53e3ee14?auto=format&fit=crop&w=500&q=80"],
+        images: ["https://th.bing.com/th/id/OIP.wBXbwNoM7tgxE6OeXCHVSAHaEL?w=194&h=150&c=6&o=7&dpr=1.5&pid=1.7&rm=3"],
         rating: "💻💻",
         tags: ["#coding", "#developer"]
     },
@@ -75,7 +75,7 @@ function Form() {
     {
         title: "Social Media Impact",
         description: "Social media has become a powerful tool for communication and information sharing. It connects people around the world but also requires responsible usage to maintain positive digital environments.",
-        images: ["https://images.unsplash.com/photo-1515263487990-61e33a4d636d?auto=format&fit=crop&w=500&q=80"],
+        images: ["https://th.bing.com/th/id/OIP.RpWNBxIEOc1mjDtCUKribAHaHa?w=160&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"],
         rating: "📱📱",
         tags: ["#socialmedia", "#internet"]
     }
