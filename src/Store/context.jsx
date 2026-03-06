@@ -97,10 +97,10 @@ export function ContextApp({ children }) {
         setexist(snapshot);
     }
     useEffect(() => {
-        if (user && apiData.length > 0) {
+        if (user ) {
             initData();
         }
-    }, [user, apiData]);
+    }, [user]);
 
 
 
