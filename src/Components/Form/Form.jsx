@@ -8,86 +8,77 @@ function Form() {
     let imbRef = useRef("")
     let reactionsRef = useRef("")
     let HashRef = useRef("")
-    const defaultPosts = [
-{
-title:"Exploring Nature",
-description:"Nature is full of beauty and peace. When we explore forests, mountains and rivers we feel relaxed and connected with the earth. Spending time in nature improves our mental health and gives us fresh energy for daily life.",
-images:["https://picsum.photos/500/300"],
-rating:"😍😍😍",
-tags:["#nature","#travel"]
-},
-
-{
-title:"Future of Technology",
-description:"Technology is rapidly changing our world. Artificial intelligence, robotics and automation are making work easier and faster. In the future technology will help humans solve complex problems and improve everyday life.",
-images:["https://picsum.photos/500/301"],
-rating:"🔥🔥🔥",
-tags:["#technology","#innovation"]
-},
-
-{
-title:"Healthy Lifestyle",
-description:"Living a healthy lifestyle requires balance between diet, exercise and mental peace. Regular physical activity and healthy food help the body stay strong and active while reducing stress and improving overall wellbeing.",
-images:["https://picsum.photos/500/302"],
-rating:"💪💪",
-tags:["#health","#fitness"]
-},
-
-{
-title:"Learning Programming",
-description:"Programming is one of the most valuable skills in the modern world. Learning coding improves logical thinking and problem solving abilities. With dedication and practice anyone can become a skilled developer.",
-images:["https://picsum.photos/500/303"],
-rating:"💻💻",
-tags:["#coding","#developer"]
-},
-
-{
-title:"Travel Around The World",
-description:"Traveling to new places allows us to discover different cultures, foods and traditions. Every country has unique beauty and experiences that teach us more about the world and broaden our perspective.",
-images:["https://picsum.photos/500/304"],
-rating:"✈️✈️",
-tags:["#travel","#adventure"]
-},
-
-{
-title:"Power of Books",
-description:"Books have the power to transform minds and inspire people. Reading regularly increases knowledge, improves imagination and helps individuals understand different viewpoints and ideas.",
-images:["https://picsum.photos/500/305"],
-rating:"📚📚",
-tags:["#books","#learning"]
-},
-
-{
-title:"Morning Motivation",
-description:"Starting the day with positive thoughts and motivation can improve productivity and focus. Successful people often follow morning routines that include exercise, planning and personal development.",
-images:["https://picsum.photos/500/306"],
-rating:"🌅🌅",
-tags:["#motivation","#success"]
-},
-
-{
-title:"Digital Creativity",
-description:"The digital world provides many tools for creativity such as design software, video editing and animation. Creative individuals can express their ideas and reach global audiences through digital platforms.",
-images:["https://picsum.photos/500/307"],
-rating:"🎨🎨",
-tags:["#design","#creative"]
-},
-
-{
-title:"Importance of Education",
-description:"Education is the foundation of a successful society. It empowers individuals with knowledge, critical thinking and skills that help them build better careers and contribute to community development.",
-images:["https://picsum.photos/500/308"],
-rating:"🎓🎓",
-tags:["#education","#knowledge"]
-},
-
-{
-title:"Social Media Impact",
-description:"Social media has become a powerful tool for communication and information sharing. It connects people around the world but also requires responsible usage to maintain positive digital environments.",
-images:["https://picsum.photos/500/309"],
-rating:"📱📱",
-tags:["#socialmedia","#internet"]
-}
+   const defaultPosts = [
+    {
+        title: "Exploring Nature",
+        description: "Nature is full of beauty and peace. When we explore forests, mountains and rivers we feel relaxed and connected with the earth. Spending time in nature improves our mental health and gives us fresh energy for daily life.",
+        images: ["https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80"],
+        rating: "😍😍😍",
+        tags: ["#nature", "#travel"]
+    },
+    {
+        title: "Future of Technology",
+        description: "Technology is rapidly changing our world. Artificial intelligence, robotics and automation are making work easier and faster. In the future technology will help humans solve complex problems and improve everyday life.",
+        images: ["https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80"],
+        rating: "🔥🔥🔥",
+        tags: ["#technology", "#innovation"]
+    },
+    {
+        title: "Healthy Lifestyle",
+        description: "Living a healthy lifestyle requires balance between diet, exercise and mental peace. Regular physical activity and healthy food help the body stay strong and active while reducing stress and improving overall wellbeing.",
+        images: ["https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=500&q=80"],
+        rating: "💪💪",
+        tags: ["#health", "#fitness"]
+    },
+    {
+        title: "Learning Programming",
+        description: "Programming is one of the most valuable skills in the modern world. Learning coding improves logical thinking and problem solving abilities. With dedication and practice anyone can become a skilled developer.",
+        images: ["https://images.unsplash.com/photo-1581091215364-6e3a53e3ee14?auto=format&fit=crop&w=500&q=80"],
+        rating: "💻💻",
+        tags: ["#coding", "#developer"]
+    },
+    {
+        title: "Travel Around The World",
+        description: "Traveling to new places allows us to discover different cultures, foods and traditions. Every country has unique beauty and experiences that teach us more about the world and broaden our perspective.",
+        images: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80"],
+        rating: "✈️✈️",
+        tags: ["#travel", "#adventure"]
+    },
+    {
+        title: "Power of Books",
+        description: "Books have the power to transform minds and inspire people. Reading regularly increases knowledge, improves imagination and helps individuals understand different viewpoints and ideas.",
+        images: ["https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80"],
+        rating: "📚📚",
+        tags: ["#books", "#learning"]
+    },
+    {
+        title: "Morning Motivation",
+        description: "Starting the day with positive thoughts and motivation can improve productivity and focus. Successful people often follow morning routines that include exercise, planning and personal development.",
+        images: ["https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=500&q=80"],
+        rating: "🌅🌅",
+        tags: ["#motivation", "#success"]
+    },
+    {
+        title: "Digital Creativity",
+        description: "The digital world provides many tools for creativity such as design software, video editing and animation. Creative individuals can express their ideas and reach global audiences through digital platforms.",
+        images: ["https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=500&q=80"],
+        rating: "🎨🎨",
+        tags: ["#design", "#creative"]
+    },
+    {
+        title: "Importance of Education",
+        description: "Education is the foundation of a successful society. It empowers individuals with knowledge, critical thinking and skills that help them build better careers and contribute to community development.",
+        images: ["https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=80"],
+        rating: "🎓🎓",
+        tags: ["#education", "#knowledge"]
+    },
+    {
+        title: "Social Media Impact",
+        description: "Social media has become a powerful tool for communication and information sharing. It connects people around the world but also requires responsible usage to maintain positive digital environments.",
+        images: ["https://images.unsplash.com/photo-1515263487990-61e33a4d636d?auto=format&fit=crop&w=500&q=80"],
+        rating: "📱📱",
+        tags: ["#socialmedia", "#internet"]
+    }
 ];
     useEffect(() => {
         if (display && info) {
@@ -119,11 +110,15 @@ tags:["#socialmedia","#internet"]
     }
     console.log(disabled)
     function autoFillPost() {
-        titleRef.current.value = defaultPosts[Math.floor(Math.random() * defaultPosts.length)].title
-        dispRef.current.value = defaultPosts[Math.floor(Math.random() * defaultPosts.length)].description
-        imbRef.current.value = defaultPosts[Math.floor(Math.random() * defaultPosts.length)].images.join(" ")
-        reactionsRef.current.value = defaultPosts[Math.floor(Math.random() * defaultPosts.length)].rating
-        HashRef.current.value = defaultPosts[Math.floor(Math.random() * defaultPosts.length)].tags.join(" ")
+        const randomPost = defaultPosts[Math.floor(Math.random() * defaultPosts.length)];
+
+        titleRef.current.value = randomPost.title;
+        dispRef.current.value = randomPost.description;
+        imbRef.current.value = randomPost.images.join(" ");
+        reactionsRef.current.value = randomPost.rating;
+        HashRef.current.value = randomPost.tags.join(" ");
+
+        takeInput();
     }
     function Wrapper() {
         return (
@@ -155,10 +150,7 @@ tags:["#socialmedia","#internet"]
                 {!display ? <button
                     type="button"
                     className="btn btn-success mb-3"
-                    onClick={()=>{
-                        autoFillPost();
-                        takeInput();
-                    }}
+                    onClick={autoFillPost}
                 >
                     Auto Generate Post
                 </button> : ""}
