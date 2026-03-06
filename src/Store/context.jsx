@@ -88,11 +88,18 @@ export function ContextApp({ children }) {
 
         setState(posts);
 
-        if (posts.length !== 0) toast.success(`${user.displayName} Posts Loaded Successfully`);
+        if (posts.length > 0) {
+
+            setTimeout(() => {
+                toast.success(`${user.displayName} Posts Loaded Successfully`);
+            }, 100);
+        }
         setexist(snapshot);
     }
     useEffect(() => {
-        initData()
+        if (user && apiData.length > 0) {
+            initData();
+        }
     }, [user, apiData]);
 
 
