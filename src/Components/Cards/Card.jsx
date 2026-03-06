@@ -21,7 +21,7 @@ function Card() {
 
     return (
         display ? <Form /> : <div className="cards-page container py-4">
-            {/* Cards Header */}
+           
             <div className="cards-header d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <h2 className="cards-title">All Posts</h2>
                 <input
@@ -73,7 +73,6 @@ function Card() {
 
             {popup ? "" : exist.size === 0 ? <Loader /> : ""}
 
-            {/* Cards Wrapper */}
             <div className="cards-wrapper d-flex flex-wrap gap-4 justify-content-center">
                 {visibleItems.map((item, index) => (
                     <div
@@ -138,7 +137,7 @@ function Card() {
             {(visibleCount < filtered.length) ? (
                 <div className="sticky-btn">
                     <button className="btn btn-dark px-4 py-2 rounded-pill shadow" onClick={() => setVisibleCount(prev => prev + 2)}>
-                        {/* {showAll ? "Read Less ⬆" : "Read More ⬇"} */}
+                        
                         Load More ⬇
                     </button>
                 </div>
@@ -146,7 +145,7 @@ function Card() {
                 setVisibleCount(2)
                 window.scrollTo({ top: 0, behavior: "smooth" });
             }}>
-                {/* {showAll ? "Read Less ⬆" : "Read More ⬇"} */}
+                
                 Read Less ⬆
             </button></div> : ""
             }

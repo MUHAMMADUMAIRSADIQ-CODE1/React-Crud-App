@@ -198,7 +198,7 @@ function Form() {
     return (
         <>
             {display ? (
-                // 🔥 Modal Mode
+               
                 <div className="overlay">
                     <div className="modal-box">
 
@@ -213,7 +213,7 @@ function Form() {
                     </div>
                 </div>
             ) : (
-                // 🟢 Normal Page Mode
+                
 
                 <>{Wrapper()}</>
 
